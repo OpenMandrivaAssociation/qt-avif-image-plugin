@@ -6,6 +6,7 @@ Version:	0.0.0
 Release:	%{?date:0.%{date}.}1
 Source0:	https://github.com/novomesk/qt-avif-image-plugin/archive/master/%{name}-%{version}%{?date:-%{date}}.tar.gz
 BuildRequires:	cmake ninja
+BuildRequires:	cmake(ECM)
 BuildRequires:	cmake(Qt5Core)
 BuildRequires:	cmake(Qt5Gui)
 BuildRequires:	pkgconfig(libavif)
