@@ -1,4 +1,4 @@
-%define date 20210318
+%define date 20210424
 
 Summary:	Qt plugin for handling AVIF images
 Name:		qt-avif-image-plugin
@@ -21,6 +21,7 @@ Qt plugin for handling AVIF images
 %prep
 %autosetup -p1 -n %{name}-master
 %cmake_qt5 \
+	-DKDE_INSTALL_QTPLUGINDIR:PATH=%{_libdir}/qt5/plugins \
 	-G Ninja
 
 %build
@@ -30,6 +31,6 @@ Qt plugin for handling AVIF images
 %ninja_install -C build
 
 %files
-%{_libdir}/plugins/imageformats/libqavif.so
+%{_libdir}/qt5/plugins/imageformats/libqavif.so
 %{_datadir}/kservices5/qimageioplugins/avif.desktop
 %{_datadir}/kservices5/qimageioplugins/avifs.desktop
