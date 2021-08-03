@@ -1,10 +1,10 @@
-%define date 20210424
+%define date 20210803
 
 Summary:	Qt plugin for handling AVIF images
 Name:		qt-avif-image-plugin
-Version:	0.4.2
-Release:	1
-Source0:	https://github.com/novomesk/qt-avif-image-plugin/releases/%{name}-%{version}.tar.gz
+Version:	0.4.3
+Release:	%{?date:0.%{date}.}1
+Source0:	https://github.com/novomesk/qt-avif-image-plugin/archive/master/%{name}-%{version}%{?date:-%{date}}.tar.gz
 BuildRequires:	cmake ninja
 BuildRequires:	cmake(ECM)
 BuildRequires:	cmake(Qt5Core)
@@ -19,7 +19,7 @@ Supplements:	%mklibname qt5gui 5
 Qt plugin for handling AVIF images
 
 %prep
-%autosetup -p1 -n %{name}-%{version}
+%autosetup -p1 -n %{name}%{?date:-master}%{!?date:-%{version}}
 %cmake_qt5 \
 	-DKDE_INSTALL_QTPLUGINDIR:PATH=%{_libdir}/qt5/plugins \
 	-G Ninja
