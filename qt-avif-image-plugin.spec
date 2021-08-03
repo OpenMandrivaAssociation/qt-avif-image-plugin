@@ -19,7 +19,7 @@ Supplements:	%mklibname qt5gui 5
 Qt plugin for handling AVIF images
 
 %prep
-%autosetup -p1 -n %{name}-%{?date:master}%{!?date:%{version}}
+%autosetup -p1 -n %{name}-%{version}
 %cmake_qt5 \
 	-DKDE_INSTALL_QTPLUGINDIR:PATH=%{_libdir}/qt5/plugins \
 	-G Ninja
