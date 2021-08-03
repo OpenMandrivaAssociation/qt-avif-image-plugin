@@ -3,7 +3,7 @@
 Summary:	Qt plugin for handling AVIF images
 Name:		qt-avif-image-plugin
 Version:	0.4.2
-Release:	%{?date:0.%{date}.}1
+Release:	1
 Source0:	https://github.com/novomesk/qt-avif-image-plugin/releases/%{name}-%{version}.tar.gz
 BuildRequires:	cmake ninja
 BuildRequires:	cmake(ECM)
