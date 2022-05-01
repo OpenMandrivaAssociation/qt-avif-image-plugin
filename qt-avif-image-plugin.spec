@@ -1,10 +1,10 @@
-%define date 20210803
+#define date 20210803
 
 Summary:	Qt plugin for handling AVIF images
 Name:		qt-avif-image-plugin
-Version:	0.4.3
+Version:	0.4.8
 Release:	%{?date:0.%{date}.}1
-Source0:	https://github.com/novomesk/qt-avif-image-plugin/archive/master/%{name}-%{version}%{?date:-%{date}}.tar.gz
+Source0:	https://github.com/novomesk/qt-avif-image-plugin/archive/%{?date:master/%{name}-%{version}-%{date}}%{!?date:refs/tags/v%{version}}.tar.gz
 BuildRequires:	cmake ninja
 BuildRequires:	cmake(ECM)
 BuildRequires:	cmake(Qt5Core)
@@ -20,6 +20,18 @@ Qt plugin for handling AVIF images
 
 %prep
 %autosetup -p1 -n %{name}%{?date:-master}%{!?date:-%{version}}
+
+# ECM seems to require a metainfo file these days
+cat >metainfo.yaml <<EOF
+description: %{summary}
+platforms:
+    - name: Linux
+portingAid: false
+deprecated: false
+release: true
+public_lib: true
+EOF
+
 %cmake_qt5 \
 	-DKDE_INSTALL_QTPLUGINDIR:PATH=%{_libdir}/qt5/plugins \
 	-G Ninja
@@ -31,6 +43,4 @@ Qt plugin for handling AVIF images
 %ninja_install -C build
 
 %files
-%{_libdir}/qt5/plugins/imageformats/libqavif.so
-%{_datadir}/kservices5/qimageioplugins/avif.desktop
-%{_datadir}/kservices5/qimageioplugins/avifs.desktop
+%{_libdir}/qt5/plugins/imageformats/libqavif5.so
