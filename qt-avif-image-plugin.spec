@@ -1,10 +1,13 @@
-#define date 20210803
-
 Summary:	Qt plugin for handling AVIF images
 Name:		qt-avif-image-plugin
-Version:	0.5.1
-Release:	%{?date:0.%{date}.}1
-Source0:	https://github.com/novomesk/qt-avif-image-plugin/archive/%{?date:master/%{name}-%{version}-%{date}}%{!?date:refs/tags/v%{version}}.tar.gz
+License:	GPLv3
+Version:	0.5.4
+Release:	1
+Source0:	https://github.com/novomesk/qt-avif-image-plugin/archive/v%{version}/%{name}-%{version}.tar.gz
+
+# Fix build with newly released libavif 1.0.0
+Patch0:		https://github.com/novomesk/qt-avif-image-plugin/commit/bd2c8a47fd04ad38f0b00c7c8648cd723006fd81.patch
+
 BuildRequires:	cmake ninja
 BuildRequires:	cmake(ECM)
 BuildRequires:	cmake(Qt5Core)
@@ -12,14 +15,13 @@ BuildRequires:	cmake(Qt5Gui)
 BuildRequires:	pkgconfig(libavif)
 BuildRequires:	qt5-macros
 BuildRequires:	qmake5
-License:	GPLv3
 Supplements:	%mklibname qt5gui 5
 
 %description
 Qt plugin for handling AVIF images
 
 %prep
-%autosetup -p1 -n %{name}%{?date:-master}%{!?date:-%{version}}
+%autosetup -p1 -n %{name}-%{version}
 
 # ECM seems to require a metainfo file these days
 cat >metainfo.yaml <<EOF
