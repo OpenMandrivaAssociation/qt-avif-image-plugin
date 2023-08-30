@@ -21,7 +21,7 @@ Supplements:	%mklibname qt5gui 5
 Qt plugin for handling AVIF images
 
 %prep
-%autosetup -p1 -n %{name}%{version}
+%autosetup -p1 -n %{name}-%{version}
 
 # ECM seems to require a metainfo file these days
 cat >metainfo.yaml <<EOF
